@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm run:*)",
+      "Bash(open:*)",
+      "Bash(node:*)",
+      "Bash(env)",
+      "Bash(FSQ_API_KEY=\"MQKYPTAUKJT2GJHFK0OF1H2BOIFXOG2MUUYLJXVZW2BP2VV0\" node scripts/geocode-spots.js)",
+      "Bash(curl:*)",
+      "Bash(FSQ_API_KEY=\"MQKYPTAUKJT2GJHFK0OF1H2BOIFXOG2MUUYLJXVZW2BP2VV0\")"
+    ]
+  }
+}
