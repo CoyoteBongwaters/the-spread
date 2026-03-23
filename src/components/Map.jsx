@@ -109,7 +109,7 @@ export default function Map({ selectedSchool, onSelectSchool, onSelectSpot }) {
       zoom: 4.4,
       minZoom: 4.0,
       maxZoom: 18,
-      maxBounds: [[-130, 24], [-60, 50]],
+      maxBounds: [[-180, 15], [-60, 72]],
       attributionControl: false,
     })
     mapRef.current = map
