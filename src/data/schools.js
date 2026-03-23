@@ -130,7 +130,7 @@ export const SCHOOLS = [
     spots: [
       { id: 'bordinos', name: "Bordino's", tier: 'legend', addr: '310 W Dickson St, Fayetteville', coords: [-94.1734, 36.0652], desc: "Fine dining on Dickson Street since 1995. The pasta is handmade. Coaches bring recruits here. It works.", order: 'Handmade pasta, whatever is seasonal', est: 1995, gameday: false, player: true },
       { id: 'georges', name: "George's Majestic Lounge", tier: 'bar', addr: '519 W Dickson St, Fayetteville', coords: [-94.1762, 36.0651], desc: "The oldest bar in Arkansas, open since 1927. Live music. Three floors. The whole city ends up here.", order: 'Domestic on draft', est: 1927, gameday: true, player: false },
-      { id: 'eggrolls', name: 'Steph's Eggrolls', tier: 'local', addr: '3561 N Steele Blvd, Fayetteville', coords: [-94.1834, 36.1021], desc: "Vietnamese-Cajun fusion in Arkansas. Sounds improbable. Tastes inevitable. The crawfish eggrolls are the thing.", order: 'Crawfish eggrolls', est: 2010, gameday: false, player: false },
+      { id: 'eggrolls', name: "Steph's Eggrolls", tier: 'local', addr: '3561 N Steele Blvd, Fayetteville', coords: [-94.1834, 36.1021], desc: "Vietnamese-Cajun fusion in Arkansas. Sounds improbable. Tastes inevitable. The crawfish eggrolls are the thing.", order: 'Crawfish eggrolls', est: 2010, gameday: false, player: false },
     ],
     ritual: "Dickson Street starts at noon on gamedays. The Hog Call echoes across campus. Razorback Stadium fills. The whole city smells like tailgate smoke by 11am.",
   },

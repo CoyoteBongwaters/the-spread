@@ -9,9 +9,9 @@ const PANEL_W = 460
 
 export default function App() {
   const [selectedSchool, setSelectedSchool] = useState(null)
-  const [selectedSpot, setSelectedSpot] = useState(null)
+  const [selectedSpot, setSelectedSpot] = useState(null)   // { spot, school }
   const [panelOpen, setPanelOpen] = useState(false)
-  const [view, setView] = useState('school')
+  const [view, setView] = useState('school')               // 'school' | 'spot'
 
   const selectSchool = useCallback(school => {
     setSelectedSchool(school)
@@ -36,6 +36,8 @@ export default function App() {
     setPanelOpen(false)
     setSelectedSpot(null)
     setView('school')
+    // Keep selectedSchool so spot pins stay on map
+    // Only clear school if user hits "All Schools"
   }, [])
 
   const zoomOut = useCallback(() => {
@@ -93,7 +95,19 @@ export default function App() {
         </div>
       )}
 
-      {/* Panel — no overlay, map always interactive */}
+      {/* Overlay */}
+      {panelVisible && (
+        <div
+          onClick={closePanel}
+          style={{
+            position: 'fixed', inset: 0,
+            background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(1px)',
+            zIndex: 205, animation: 'fadeIn 0.3s ease',
+          }}
+        />
+      )}
+
+      {/* Panel */}
       <div style={{
         position: 'fixed', top: 0, right: 0,
         width: `min(${PANEL_W}px, 100vw)`, height: '100vh',
@@ -102,10 +116,8 @@ export default function App() {
         zIndex: 210,
         transform: panelVisible ? 'translateX(0)' : 'translateX(100%)',
         transition: 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)',
-        pointerEvents: panelVisible ? 'auto' : 'none',
         overflowY: 'auto',
         display: 'flex', flexDirection: 'column',
-        boxShadow: panelVisible ? '-8px 0 40px rgba(0,0,0,0.5)' : 'none',
       }}>
         {view === 'school' && selectedSchool && (
           <SchoolPanel
@@ -126,8 +138,9 @@ export default function App() {
 
       {/* Hawaii / Alaska inset labels */}
       <div style={{
-        position: 'fixed', bottom: 32, right: 12,
+        position: 'fixed', bottom: 32, right: panelVisible ? `min(${PANEL_W}px, 100vw)` : 12,
         zIndex: 190, display: 'flex', gap: 6,
+        transition: 'right 0.35s cubic-bezier(0.25,0.46,0.45,0.94)',
       }}>
         {['Hawaii', 'Alaska'].map(name => (
           <div key={name} style={{
@@ -161,11 +174,13 @@ export default function App() {
 
       {/* Bottom bar */}
       <div style={{
-        position: 'fixed', bottom: 0, left: 0, right: 0,
+        position: 'fixed', bottom: 0, left: 0,
+        right: panelVisible ? `min(${PANEL_W}px, 100vw)` : 0,
         height: 24, background: 'rgba(15,15,20,0.97)',
         borderTop: '1px solid rgba(200,160,60,0.3)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 14px', zIndex: 195,
+        transition: 'right 0.35s cubic-bezier(0.25,0.46,0.45,0.94)',
       }}>
         <span style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 10, letterSpacing: 4, color: 'rgba(200,160,60,0.7)' }}>THE SPREAD</span>
         <span style={{ fontSize: 8, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' }}>The Definitive College Football Food Atlas</span>
